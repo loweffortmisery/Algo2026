@@ -22,5 +22,5 @@ def g(n):
 Так, можна оптимізувати до O(1)
 '''
 def g(n):
-    sum = n(n+3)/2
+    sum = n(n+1)(n+5)/6
     return sum
