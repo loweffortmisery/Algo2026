@@ -1,0 +1,12 @@
+f(n) = 3*n^2 - n + 4
+g(n) = n * log(n) + 5
+h(n) = f(n) + g(n) = 3*n^2 + n*(log(n)-1) + 9
+
+for each n > 100:
+    log(n) < n
+    9 < n^2
+then for each n > 100:
+    h(n) < 3*n^2 + n^2 + n^2 = 5*n^2
+    
+then:
+h(n) = O(n^2)
