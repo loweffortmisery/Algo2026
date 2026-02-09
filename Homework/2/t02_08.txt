@@ -1,0 +1,18 @@
+f(n) = sqrt(n)
+g(n) = log(n)
+h(n) = f(n) + g(n) = n^(1/2) + log(n)
+-------
+log(n^(1/2)) = 1/2 * log(n)
+log(n) = 2 log(n^(1/2))
+
+for each n > 100:
+  n^(1/2) > 10
+then:
+  for each n > 100:
+    log(n^(1/2)) < n^(1/2)
+then:
+  for each n > 100:
+    h(n) < 3 * n^(1/2) 
+---------------
+then:
+  h(n) = O(n^(1/2)) = O(sqrt(n))
