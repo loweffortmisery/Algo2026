@@ -19,14 +19,8 @@ def is_prime(n: int) -> bool:
 
 
 class Hash_table:
-    def __init__(self):
-        self.size = 11
-        self.current_size = 0
-        self.keys = [None]
-        self.values = [None]
-        self.resize()
-
-    def resize(self):
+    def __init__(self, sz = 11):
+        self.size = sz
         self.current_size = 0
         self.keys = [EMPTY for _ in range(self.size)] 
         self.values = [EMPTY for _ in range(self.size)] 
@@ -45,7 +39,7 @@ class Hash_table:
             self.size += 2
         _keys = self.keys
         _values = self.values
-        self.resize()
+        self.__init__(self.size)
         for i in range(len(_keys)):
             if _keys[i] not in (EMPTY, DELETED):
                 self.put(_keys[i], _values[i])
@@ -110,18 +104,13 @@ class table_keys_titles(Hash_table):
 
 
 class table_keys_authors(Hash_table):
-    def resize(self):
-        self.current_size = 0
-        self.keys = [EMPTY for _ in range(self.size)] 
-        self.values = [EMPTY for _ in range(self.size)] 
-    
     def rehash(self):
         self.size = self.size * 2 + 1
         while not is_prime(self.size):
             self.size += 2
         _keys = self.keys
         _values = self.values
-        self.resize()
+        self.__init__(self.size)
         for i in range(len(_keys)):
             if _keys[i] is not EMPTY:
                 author = _keys[i]
