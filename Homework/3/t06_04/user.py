@@ -128,15 +128,12 @@ class table_keys_authors(Hash_table):
         for node in _slots:
             _node = node
             while _node is not EMPTY:
-                author = _node.key
-                _titles = _node.value.get_all_titles()
+                i = self.hash(_node.key)
+                new_node = Node(_node.key, _node.value)
+                new_node.next = self.slots[i]
+                self.slots[i] = new_node
+                self.current_size += 1
                 _node = _node.next
-                if(len(_titles) == 0):
-                    continue
-                self.set(author, _titles[0])
-                new_titles = self.get(author)
-                for j in range(1, len(_titles)):
-                    new_titles.add_title(_titles[j])
                 
 
     def set(self, author, title):
