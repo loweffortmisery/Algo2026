@@ -19,7 +19,7 @@ class Set():
 
     def hash(self, key):
         M = 1_000_000_007
-        return (key%M)%self.size
+        return (key%M) % self.size
 
     def rehash(self):
         self.size *= 2
@@ -41,7 +41,8 @@ class Set():
         while (self.keys[i] is not EMPTY):
 
             if(self.keys[i] is DELETED):
-                j = i
+                if (j == -1):
+                    j = i
                 i = (i+1) % self.size
                 continue
             if (self.keys[i] == key):
@@ -58,14 +59,16 @@ class Set():
         while (self.keys[i] is not EMPTY):
             if (self.keys[i] == key):
                 return True
+            i = (i+1) % self.size
         return False
 
     def remove(self, key):
         i = self.hash(key)
         while (self.keys[i] is not EMPTY):
-            if (self.keys == key):
-                self.keys = DELETED
+            if (self.keys[i] == key):
+                self.keys[i] = DELETED
                 return
+            i = (i+1) % self.size
 
 if __name__ == "__main__":
     n = int(input())
